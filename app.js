@@ -12,6 +12,13 @@ const express = require('express');
 const app = express();
 const { Client } = require('pg');
 const bodyParser = require('body-parser');
+const accountsid = "ACc4a63a657767760afa9196f056c01634";
+const authToken = "32f9e3b54db408d811a61ba7e536c3b4";
+const twilioNumber = "+13029244234";
+const twilio = require('twilio')(accountsid, authToken);
+
+
+
 // take requests and turn them into usable data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,19 +45,21 @@ const connectionString = 'postgresql://chandra:m9eEuzqvxFBj4zYr_FY5-A@free-tier1
 
 // define a simple route
 app.get('/', (req, res) => {
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL || connectionString,
-        application_name: 'StateFarm',
-    });
-    client.connect().then(() => {
-        return client.query('SELECT NOW() as now');
-    }).then(results => {
-        res.send(results.rows[0]);
-    }).catch(e => {
-        console.error(e.stack);
-        res.status(500).send('Error: ' + e.message);
-    });
-    // res.json({ "message": "Welcome to the application." });
+    twilio.messages.create({
+        body: 'Hello from Node',
+        to: 'whatsapp:+12098347810',
+        from: "whatsapp:+14155238886"
+    }).then((message) => console.log(message.sid));
+
+    res.json({ "message": "Welcome to the application." });
+});
+
+app.post('/webhook', (req, res) => {
+    // console.log(req.body);
+    let msg = req.body.Body;
+    let from = req.body.From;
+
+    res.send('Hello World!');
 });
 
 
