@@ -87,6 +87,8 @@ app.post('/webhook', (req, res) => {
     let from = req.body.From;
     if (!from.includes("whatsapp")) {
         twilioNumber = "+13029244234";
+    } else {
+        twilioNumber = "whatsapp:+14155238886";
     }
     console.log(twilioNumber);
 
