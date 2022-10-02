@@ -1,0 +1,23 @@
+{
+  "name": "hackuta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csreddy98/HackUTA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csreddy98/HackUTA/issues"
+  },
+  "homepage": "https://github.com/csreddy98/HackUTA#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pg": "^8.8.0"
+  }
+}
